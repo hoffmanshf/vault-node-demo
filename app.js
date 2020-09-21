@@ -9,16 +9,13 @@ const vault = require("./vault");
 const index = require("./routes/index");
 const users = require("./routes/users");
 
-const roleId = process.env.VAULT_APPROLE_ROLE_ID;
-const secretId = process.env.VAULT_APPROLE_SECRET_ID;
-
 const app = express();
 if (!vault.token) {
   throw new Error("Missing Vault token");
 }
 
 vault
-  .read("kv-v1/eng/apikey")
+  .read("secret/api-server/apikey")
   .then((result) => {
     console.log(result);
     app.set("apiKey", result.data.API_KEY);
@@ -26,6 +23,17 @@ vault
   .catch((err) => {
     console.error(err);
   });
+
+// vault
+//     .read("database/creds/readonly")
+//     .then((result) => {
+//       console.log(result);
+//       app.set("DB_USERNAME", result.data.username);
+//       app.set("DB_PASSWORD", result.data.password);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -41,9 +49,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", index);
 app.use("/users", users);
-
-// let apiKey = process.env.APIKEY;
-// app.set('apiKey', apiKey);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
