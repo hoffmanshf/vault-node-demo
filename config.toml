@@ -1,0 +1,13 @@
+[global]
+# Vault address
+address = "https://ciam.getpitstop.io:8200"
+# Maximum number of concurrent queries to Vault. '0' for unlimited (use with care)
+concurrency = 20
+# List of path patterns to return
+include_paths = ["*"]
+# List of paths to be excluded from the selected 'include_paths'
+exclude_paths = []
+# Default kv version to use
+kv_version = "1"
+# Enables or disables SSL Verification
+insecure = false
