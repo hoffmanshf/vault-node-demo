@@ -25,7 +25,7 @@ if (!vault.token) {
 //     console.error(err);
 //   });
 
-const rawData = fs.readFileSync("./data/secret.json", "utf8");
+const rawData = fs.readFileSync("./secrets.json", "utf8");
 const data = JSON.parse(rawData);
 console.log('Success! Here is my api key: ' + data["api-server/apikey"]);
 // vault
