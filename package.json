@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run vault:read && node ./bin/www",
+    "start": "node ./bin/www",
     "vault:read": "./vault-read.sh"
   },
   "dependencies": {
