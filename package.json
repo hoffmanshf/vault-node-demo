@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "npm run vault:read && node ./bin/www",
+    "vault:read": "./vault-read.sh"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -11,10 +12,11 @@
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.15.5",
+    "fs": "0.0.1-security",
     "morgan": "~1.9.0",
+    "node-vault": "^0.9.20",
     "request": "^2.85.0",
-    "serve-favicon": "~2.4.5",
-    "node-vault": "^0.9.20"
+    "serve-favicon": "~2.4.5"
   },
   "devDependencies": {
     "eslint": "^7.2.0",

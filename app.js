@@ -3,6 +3,7 @@ const path = require("path");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+const fs = require("fs");
 
 // eslint-disable-next-line node/no-unpublished-require,import/no-extraneous-dependencies
 const vault = require("./vault");
@@ -14,16 +15,19 @@ if (!vault.token) {
   throw new Error("Missing Vault token");
 }
 
-vault
-  .read("secret/api-server/apikey")
-  .then((result) => {
-    console.log(result);
-    app.set("apiKey", result.data.API_KEY);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+// vault
+//   .read("secret/api-server/apikey")
+//   .then((result) => {
+//     console.log(result);
+//     app.set("apiKey", result.data.API_KEY);
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
 
+const rawData = fs.readFileSync("./data/secret.json", "utf8");
+const data = JSON.parse(rawData);
+console.log('Success! Here is my api key: ' + data["api-server/apikey"]);
 // vault
 //     .read("database/creds/readonly")
 //     .then((result) => {
