@@ -27,7 +27,7 @@ if (!vault.token) {
 
 const rawData = fs.readFileSync("./secrets.json", "utf8");
 const data = JSON.parse(rawData);
-console.log('Success! Here is my api key: ' + data["secret/api-server/apikey"]);
+console.log('Success! Here is my api key: ' + data["secret/api-server/apikey"].API_KEY);
 // vault
 //     .read("database/creds/readonly")
 //     .then((result) => {
